@@ -2,7 +2,7 @@ import { ThemeProvider } from 'styled-components';
 import {
   Switch,
   Route,
-  BrowserRouter as Router, PageTitle, PageHeading, PageSubtext,
+  BrowserRouter as Router, PageTitle,
 } from 'components/common/common';
 import DetailedQuest from 'components/detailed-quest/detailed-quest';
 import Contacts from 'components/contacts/contacts';
