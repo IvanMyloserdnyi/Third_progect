@@ -8,73 +8,53 @@ import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './quests-catalog.styled';
 import { useState } from 'react';
-
 const QuestsCatalog = (props) => {
   const questsCatalogData = props.questsCatalogData
   const [questType, setQuestType] = useState('');
-  function setCurrentType(type) {
-    switch (true) {
-      case type === 'adventures':
-        setQuestType('adventures')
-        break
-      case type === 'horror':
-        setQuestType('horror')
-        break
-      case type === 'mystic':
-        setQuestType('mystic')
-        break
-      case type === 'detective':
-        setQuestType('detective')
-        break
-      case type === 'sci-fi':
-        setQuestType('sci-fi')
-        break
-      default:
-        setQuestType('')
-    }
-  }
   const filteredQuests = questType === ''?
     questsCatalogData : questsCatalogData.filter((quest) => quest.type === questType);
+  function setActive(type) {
+    return questType === type? 'active-link':''
+  }
   return (
     <>
       <S.Tabs>
-        <S.TabItem onClick = {() =>setCurrentType('')}>
-          <S.TabBtn isActive>
+        <S.TabItem onClick = {() =>setQuestType('')}>
+          <S.TabBtn isActive ={setActive('')}>
             <IconAllQuests />
-            <S.TabTitle>Все квесты</S.TabTitle>
+            <S.TabTitle>Всі квести</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
-
-        <S.TabItem onClick = {() =>setCurrentType('adventures')}>
-          <S.TabBtn>
+        <S.TabItem onClick = {() =>setQuestType('Пригодницьке')}>
+          <S.TabBtn isActive ={setActive('Пригодницьке')} >
             <IconAdventures />
-            <S.TabTitle>Приключения</S.TabTitle>
+            <S.TabTitle>Пригодницьке</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick = {() =>setCurrentType('horror')}>
-          <S.TabBtn>
+        <S.TabItem onClick = {() =>setQuestType('Хоррор')}>
+          <S.TabBtn isActive ={setActive('Хоррор')}>
             <IconHorrors />
-            <S.TabTitle>Ужасы</S.TabTitle>
+            <S.TabTitle>Хоррор</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick = {() =>setCurrentType('mystic')}>
-          <S.TabBtn>
+        <S.TabItem onClick = {() =>setQuestType('Містика')}>
+          <S.TabBtn isActive ={setActive('Містика')}>
             <IconMystic />
-            <S.TabTitle>Мистика</S.TabTitle>
+            <S.TabTitle>Містика</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick = {() =>setCurrentType('detective')}>
-          <S.TabBtn>
+        <S.TabItem onClick = {() =>setQuestType('Детектив')}>
+          <S.TabBtn isActive ={setActive('Детектив')}>
             <IconDetective />
             <S.TabTitle>Детектив</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick = {() =>setCurrentType('sci-fi')}>
-          <S.TabBtn>
+        <S.TabItem onClick = {() =>setQuestType('Sci-Fi')}>
+          <S.TabBtn isActive ={setActive('Sci-Fi')}>
             <IconScifi />
             <S.TabTitle>Sci-fi</S.TabTitle>
           </S.TabBtn>
@@ -90,7 +70,7 @@ const QuestsCatalog = (props) => {
                   src={quest.previewImg}
                   width='344'
                   height='232'
-                  alt={`квест ${quest.title}`}/*`квест ${quest.title}`*/
+                  alt={`квест ${quest.title}`}
                 />
 
                 <S.QuestContent>

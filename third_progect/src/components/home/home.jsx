@@ -11,8 +11,8 @@ const HomePage = (props) => (
   <MainLayout>
     <S.Main forwardedAs="main">
       <PageHeading>
-        <PageTitle>Выберите тематику</PageTitle>
-        <PageSubtext>квесты в Санкт-Петербурге</PageSubtext>
+        <PageTitle>Виберіть тематику</PageTitle>
+        <PageSubtext>Квести в Одесі</PageSubtext>
       </PageHeading>
       <QuestsCatalog questsCatalogData = {props.questsCatalogData}/>
     </S.Main>

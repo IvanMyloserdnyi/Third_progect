@@ -10,8 +10,13 @@ import { useParams } from 'react-router-dom';
 const DetailedQuest = (props) => {
   const questsCatalogData = props.questsCatalogData;
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
-  const onBookingBtnClick = () => {
-    setIsBookingModalOpened(true);
+  const onBookingBtnClick = (action) => {
+    if (action === 'close') {
+      setIsBookingModalOpened(false);
+    }
+    else {
+      setIsBookingModalOpened(true);
+    }
   };
   const {id} = useParams()
   const quest = questsCatalogData.find(obg => obg.id === parseInt(id))
@@ -34,11 +39,11 @@ const DetailedQuest = (props) => {
               <S.Features>
                 <S.FeaturesItem>
                   <IconClock width='20' height='20' />
-                  <S.FeatureTitle>{`${quest.duration} мин`}</S.FeatureTitle>
+                  <S.FeatureTitle>{`${quest.duration} хвилин`}</S.FeatureTitle>
                 </S.FeaturesItem>
                 <S.FeaturesItem>
                   <IconPerson width='19' height='24' />
-                  <S.FeatureTitle>{`${quest.peopleCount[0]}–${quest.peopleCount[1]} чел`}</S.FeatureTitle>
+                  <S.FeatureTitle>{`${quest.peopleCount[0]}–${quest.peopleCount[1]} осіб`}</S.FeatureTitle>
                 </S.FeaturesItem>
                 <S.FeaturesItem>
                   <IconPuzzle width='24' height='24' />
@@ -48,12 +53,6 @@ const DetailedQuest = (props) => {
 
               <S.QuestDescription>
                 {quest.description}
-                {/*В комнате с приглушённым светом несколько человек, незнакомых друг
-                    с другом, приходят в себя. Никто не помнит, что произошло прошлым
-                    вечером. Руки и ноги связаным, но одному из вас получилось
-                    освободиться. На стене висит пугающий таймер и запущен отстёт
-                    60&nbsp;минут. Сможете ли вы разобраться в стрессовой ситуации,
-                    помочь другим, разобраться что произошло и выбраться из комнаты?*/}
               </S.QuestDescription>
 
               <S.QuestBookingBtn onClick={onBookingBtnClick}>
@@ -62,7 +61,7 @@ const DetailedQuest = (props) => {
             </S.PageDescription>
           </S.PageContentWrapper>
 
-          {isBookingModalOpened && <BookingModal />}
+          {isBookingModalOpened && <BookingModal onBookingBtnClick = {onBookingBtnClick}/>}
         </S.Main>
     </MainLayout>
   );

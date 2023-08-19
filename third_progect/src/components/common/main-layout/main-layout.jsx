@@ -2,9 +2,9 @@ import { Header, Footer } from 'components/common/common';
 
 const MainLayout = ({ children }) => (
   <>
-    <Header />
+    <Header/>
     {children}
-    <Footer />
+    <Footer/>
   </>
 );
 
